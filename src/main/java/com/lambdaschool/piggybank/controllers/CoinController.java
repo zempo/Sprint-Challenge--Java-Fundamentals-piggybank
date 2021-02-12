@@ -1,7 +1,7 @@
 package com.lambdaschool.piggybank.controllers;
 
-import com.lambdaschool.piggybank.models.Deposit;
-import com.lambdaschool.piggybank.repositories.DepositRepo;
+import com.lambdaschool.piggybank.models.Coin;
+import com.lambdaschool.piggybank.repositories.CoinRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,19 +12,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-public class DepositController {
+public class CoinController {
     @Autowired
-    DepositRepo depositrepo;
+    CoinRepository coinrepo;
 
     // http://localhost:2019/total
     @GetMapping(value = "/total", produces = "application/json")
     public ResponseEntity<?> getDepositTotal() {
-        List<Deposit> depositList = new ArrayList<>();
-        depositrepo.findAll().iterator().forEachRemaining(depositList::add);
+        List<Coin> coinList = new ArrayList<>();
+        coinrepo.findAll().iterator().forEachRemaining(coinList::add);
 
         double depositBalance = 0.0;
 
-        for (Deposit d : depositList) {
+        for (Coin d : coinList) {
             depositBalance += (double)d.getQuantity() * d.getValue();
             if (d.getQuantity() > 1) {
                 System.out.println(d.getQuantity() + " " + d.getNamePlural());

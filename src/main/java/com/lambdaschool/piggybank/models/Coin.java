@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "deposits")
-public class Deposit {
+public class Coin {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -14,9 +14,9 @@ public class Deposit {
     private double value;
     private int quantity;
 
-    public  Deposit() {}
+    public Coin() {}
 
-    public Deposit(String name, String namePlural, double value, int quantity) {
+    public Coin(String name, String namePlural, double value, int quantity) {
         this.name = name;
         this.namePlural = namePlural;
         this.value = value;
